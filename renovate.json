@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "dependencyDashboard": true,
+  "major": {
+    "dependencyDashboardApproval": true
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "minor and patch versions"
+    },
+    {
+      "matchManagers": ["npm"],
+      "enabled": false
+    },
+    {
+      "matchPackagePatterns": [
+        "io.netty:netty-codec-http*", 
+        "org.reflections:reflections*", 
+        "org.apache.directory.server*",
+        "io.prometheus:*",
+        "org.springframework:*",
+        "org.liquibase*"
+      ],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}
