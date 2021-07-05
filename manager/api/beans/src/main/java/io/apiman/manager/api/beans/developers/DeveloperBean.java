@@ -16,8 +16,11 @@
 
 package io.apiman.manager.api.beans.developers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.apiman.manager.api.beans.clients.ClientBean;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -26,12 +29,16 @@ import java.util.Set;
  * Models a developer
  * The Keycloak Username is used as ID
  */
+@Entity
+@Table(name = "developers")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DeveloperBean implements Serializable {
 
     private static final long serialVersionUID = 7127400624541487145L;
 
+    @Id
     private String id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "developer")
     private Set<DeveloperMappingBean> clients = new LinkedHashSet<>();
 
     /**
